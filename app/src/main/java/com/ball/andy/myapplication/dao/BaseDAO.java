@@ -28,12 +28,13 @@ public abstract class BaseDAO<T extends DominKey> {
     public Convertz<T> convertz = null;
 
 
-    public BaseDAO(Convertz<T> convertz, Context context) {
+     public  BaseDAO(Convertz<T> convertz, Context context) {
         this.convertz = convertz;
 
         db = DBHelper.getDatabase(context);
 
     }
+
 
     /**
      * @param <T>
@@ -50,12 +51,12 @@ public abstract class BaseDAO<T extends DominKey> {
         db = DBHelper.getDatabase(context);
     }
 
-    public void close() {
+    public final void close() {
         db.close();
     }
 
 
-    public T insert(T domainType) {
+    public final T insert(T domainType) {
 
         ContentValues cv = this.convertz.getContentValues(domainType);
 
@@ -67,7 +68,7 @@ public abstract class BaseDAO<T extends DominKey> {
     }
 
 
-    public boolean update(T domainType) {
+    public final boolean update(T domainType) {
 
         ContentValues cv = this.convertz.getContentValues(domainType);
 
@@ -75,14 +76,14 @@ public abstract class BaseDAO<T extends DominKey> {
         return db.update(TABLE_NAME(), cv, "_id=? ", new String[]{domainType.getId() + ""}) > 0;
     }
 
-    public boolean delete(T domainType) {
+    public final boolean delete(T domainType) {
         // 設定條件為編號，格式為「欄位名稱=資料」
         String where = KEY_ID + "=" + domainType.getId();
         // 刪除指定編號資料並回傳刪除是否成功
         return db.delete(TABLE_NAME(), where, null) > 0;
     }
 
-    public List<T> getAll() {
+    public final List<T> getAll() {
         List<T> result = new ArrayList<>();
         Cursor cursor = db.query(
                 TABLE_NAME(), null, null, null, null, null, null, null);
@@ -95,7 +96,7 @@ public abstract class BaseDAO<T extends DominKey> {
         return result;
     }
 
-    public T get(long id) {
+    public final T get(long id) {
         // 準備回傳結果用的物件
         T item = null;
         // 使用編號為查詢條件
@@ -116,7 +117,7 @@ public abstract class BaseDAO<T extends DominKey> {
         return item;
     }
 
-    public List<T> get(String where, String[] values) {
+    public final List<T> get(String where, String[] values) {
         // 準備回傳結果用的物件
         List<T> item = new ArrayList<>();
         // 使用編號為查詢條件
@@ -138,4 +139,7 @@ public abstract class BaseDAO<T extends DominKey> {
         return item;
     }
 
+    public SQLiteDatabase getDb() {
+        return db;
+    }
 }

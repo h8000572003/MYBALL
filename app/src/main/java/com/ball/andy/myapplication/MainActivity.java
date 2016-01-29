@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressDialog progressDialog;
 
     private MainController controller;
 
-    private ProgressDialog progressDialog;
+
 
     private Ballot ballot = null;
 
