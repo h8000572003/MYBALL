@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tab_titles">
+
+        <item>場次</item>
+        <item>選手</item>
+    </string-array>
+</resources>

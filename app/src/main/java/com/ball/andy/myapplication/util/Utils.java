@@ -1,0 +1,22 @@
+package com.ball.andy.myapplication.util;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+
+import com.ball.andy.myapplication.R;
+
+/**
+ * Created by Andy on 2016/1/26.
+ */
+public class Utils {
+    public static int getToolbarHeight(Context context) {
+        final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+                new int[]{R.attr.actionBarSize});
+        int toolbarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
+        return toolbarHeight;
+    }
+
+
+}
