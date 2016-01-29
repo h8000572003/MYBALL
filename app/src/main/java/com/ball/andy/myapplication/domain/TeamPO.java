@@ -1,9 +1,11 @@
 package com.ball.andy.myapplication.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Andy on 2016/1/28.
  */
-public class TeamPO extends DominKey{
+public class TeamPO  extends DominKey implements Serializable {
 
     private Long id;
     private String teamName;

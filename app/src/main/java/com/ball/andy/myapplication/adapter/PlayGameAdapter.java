@@ -107,7 +107,7 @@ public class PlayGameAdapter extends RecyclerView.Adapter<PlayGameAdapter.ViewHo
             SpannableStringBuilder style1 = new SpannableStringBuilder(contact.getName());
             int begin = contact.getName().indexOf("VS");
             int end = contact.getName().indexOf("VS") + 2;
-            style1.setSpan(new ForegroundColorSpan(Color.GREEN), begin, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style1.setSpan(new ForegroundColorSpan(Color.RED), begin, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             //  style1.setSpan(new ForegroundColorSpan(Color.BLUE),showMessage.indexOf(":")+1,showMessage.length(),Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 
 

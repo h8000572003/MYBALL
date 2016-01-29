@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ball.andy.myapplication.adapter.GameActivity;
 import com.ball.andy.myapplication.adapter.PlayAdapter;
 import com.ball.andy.myapplication.controller.MainController;
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             ballot = null;
 
             Intent it = new Intent();
-            it.putExtra("data", (Serializable) controller.getDto().getTeams());
+            it.putExtra("data", (Serializable) controller.getDto().getTeamPOs());
             it.setClass(MainActivity.this, GameActivity.class);
 
             startActivity(it);

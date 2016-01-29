@@ -8,7 +8,7 @@ public class TeamDTO {
     private String teamName;
     private String player1;
     private String player2;
-    private int socre;
+    private int score;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class TeamDTO {
         this.player2 = player2;
     }
 
-    public int getSocre() {
-        return socre;
+    public int getScore() {
+        return score;
     }
 
-    public void setSocre(int socre) {
-        this.socre = socre;
+    public void setScore(int score) {
+        this.score = score;
     }
 }

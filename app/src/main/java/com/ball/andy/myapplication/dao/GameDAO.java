@@ -125,9 +125,9 @@ public class GameDAO {
         return item;
     }
 
-    public GamePO get(String where, String[] values) {
+    public List<GamePO> get(String where, String[] values) {
         // 準備回傳結果用的物件
-        GamePO item = null;
+        List<GamePO> gamePOs = new ArrayList<GamePO>();
         // 使用編號為查詢條件
 
         // 執行查詢
@@ -137,13 +137,13 @@ public class GameDAO {
         // 如果有查詢結果
         while (result.moveToNext()) {
             // 讀取包裝一筆資料的物件
-            item = getRecord(result);
+            gamePOs.add(getRecord(result));
         }
 
         // 關閉Cursor物件
         result.close();
         // 回傳結果
-        return item;
+        return gamePOs;
     }
 
 
@@ -168,7 +168,7 @@ public class GameDAO {
 
                 po.setaName(teamA.getPlayer1() + "," + teamA.getPlayer2());
                 po.setbName(teamB.getPlayer1() + "," + teamB.getPlayer2());
-                po.setName(po.getaName() + " VS " + po.getbName());
+                po.setName(teamA.getTeamName() + " VS " + teamB.getTeamName());
                 po.setaScore("0");
                 po.setbScore("0");
                 po.setStatus("");

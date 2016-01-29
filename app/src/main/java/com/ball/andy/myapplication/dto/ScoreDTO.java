@@ -14,6 +14,16 @@ public class ScoreDTO {
 
     private List<TeamPO>teamPOs=new ArrayList<>();
 
+    private List<TeamDTO>teamDTOs=new ArrayList<TeamDTO>();
+
+
+    public List<TeamDTO> getTeamDTOs() {
+        return teamDTOs;
+    }
+
+    public void setTeamDTOs(List<TeamDTO> teamDTOs) {
+        this.teamDTOs = teamDTOs;
+    }
 
     public List<TeamPO> getTeamPOs() {
         return teamPOs;

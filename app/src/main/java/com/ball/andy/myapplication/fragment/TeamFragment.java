@@ -1,16 +1,18 @@
 package com.ball.andy.myapplication.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ball.andy.myapplication.R;
-import com.ball.andy.myapplication.adapter.TeamAdapter;
+import com.ball.andy.myapplication.adapter.TeamScoreAdapter;
 import com.ball.andy.myapplication.controller.ScoreController;
 
 /**
@@ -18,6 +20,7 @@ import com.ball.andy.myapplication.controller.ScoreController;
  */
 public class TeamFragment extends Fragment {
 
+    private static final String TAG ="TeamFragment" ;
     private View rootView;
 
 
@@ -28,9 +31,14 @@ public class TeamFragment extends Fragment {
     private ScoreController controller;
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
-
+        Log.i(TAG,"onActivityResult");
+        controller.loadTeams();
+        mAdapter.notifyDataSetChanged();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Nullable
     @Override
@@ -61,7 +69,7 @@ public class TeamFragment extends Fragment {
 
         controller.loadTeams();
 
-        mAdapter = new TeamAdapter(controller.getDto().getTeamPOs());
+        mAdapter = new TeamScoreAdapter(controller.getDto().getTeamDTOs());
 
         mRecyclerView.setAdapter(mAdapter);
     }

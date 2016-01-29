@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -35,6 +36,9 @@ public class ModifyScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_play_layout);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         gamePO =
                 (GamePO) getIntent().getSerializableExtra("data");
 
@@ -43,7 +47,7 @@ public class ModifyScoreActivity extends AppCompatActivity {
         this.modify_btn = (Button) this.findViewById(R.id.modify_btn);
         this.gameCheckBox = (CheckBox) this.findViewById(R.id.gameCheckBox);
 
-        this.gameCheckBox.setChecked(gamePO.getStatus().equals("Y")?true:false);
+        this.gameCheckBox.setChecked(gamePO.getStatus().equals("Y") ? true : false);
 
         inputLayoutA = (TextInputLayout) this.findViewById(R.id.textInputA);
         inputLayoutA.setHint(gamePO.getaName() + "分數");

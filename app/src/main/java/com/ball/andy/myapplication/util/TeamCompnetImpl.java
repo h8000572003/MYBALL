@@ -19,20 +19,23 @@ public class TeamCompnetImpl implements TeamCompnet {
         if (compnet == null) {
             compnet = new TeamCompnetImpl();
         }
-        return  compnet;
+        return compnet;
     }
 
     @Override
     public List<TeamPO> makeTeams(Map<String, List<MainPlayerDTO>> teams, Context ct) {
         return this.convertzer(teams);
     }
+
     private List<TeamPO> convertzer(Map<String, List<MainPlayerDTO>> map) {
 
         List<TeamPO> teams = new ArrayList<>();
 
+
+        char teamName = 'A';
         for (Map.Entry<String, List<MainPlayerDTO>> entry : map.entrySet()) {
             final TeamPO team = new TeamPO();
-            team.setTeamName(entry.getKey());
+            team.setTeamName(++teamName + "");
 
 
             for (int i = 0; i < entry.getValue().size(); i++) {

@@ -111,12 +111,11 @@ public class MainServiceImpl implements MainService {
 
 
         for (Map.Entry<String, List<MainPlayerDTO>> tmp : teamsMap.entrySet()) {
-
             Log.i(TAG, tmp.getValue().toString());
-
-
         }
-        dto.setTeams(teamsMap);
+
+
+        dto.setTeamPOs(this.converter(teamsMap));
 
 
     }
@@ -134,8 +133,8 @@ public class MainServiceImpl implements MainService {
     @Override
     public void makeGames(MainDTO player, Context ct) {
 
-        final List<TeamPO> teamPOs = this.convertzer(player.getTeams());
-        TeamDAO teamDAO = new TeamDAO(ct);
+        final List<TeamPO> teamPOs = player.getTeamPOs();
+        final TeamDAO teamDAO = new TeamDAO(ct);
 
         for (TeamPO teamPO : teamPOs) {
             teamDAO.insert(teamPO);
@@ -145,15 +144,13 @@ public class MainServiceImpl implements MainService {
         gameCompnet.makeGames(teamPOs, ct);
     }
 
-    private List<TeamPO> convertzer(Map<String, List<MainPlayerDTO>> map) {
+    private List<TeamPO> converter(Map<String, List<MainPlayerDTO>> map) {
 
-        List<TeamPO> teams = new ArrayList<>();
-
+        final List<TeamPO> teams = new ArrayList<>();
+        char teamA = 'A';
         for (Map.Entry<String, List<MainPlayerDTO>> entry : map.entrySet()) {
             final TeamPO team = new TeamPO();
-            team.setTeamName(entry.getKey());
-
-
+            team.setTeamName(teamA++ + "");
             for (int i = 0; i < entry.getValue().size(); i++) {
                 if (i == 0) {
                     team.setPlayer1(entry.getValue().get(i).getName());

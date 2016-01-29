@@ -1,4 +1,4 @@
-package com.ball.andy.myapplication.adapter;
+package com.ball.andy.myapplication;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.ball.andy.myapplication.R;
+import com.ball.andy.myapplication.adapter.TeamAdapter;
 import com.ball.andy.myapplication.dao.TeamDAO;
 import com.ball.andy.myapplication.domain.TeamPO;
-import com.ball.andy.myapplication.dto.MainPlayerDTO;
 import com.ball.andy.myapplication.service.MainService;
 import com.ball.andy.myapplication.service.MainServiceImpl;
 import com.ball.andy.myapplication.util.GameCompnet;
@@ -22,14 +21,13 @@ import com.ball.andy.myapplication.util.TeamCompnet;
 import com.ball.andy.myapplication.util.TeamCompnetImpl;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Andy on 2016/1/22.
  */
 public class GameActivity extends AppCompatActivity {
 
-    private Map<String, List<MainPlayerDTO>> teams;
+    private List<TeamPO> teamPOs;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -49,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        teams = (Map<String, List<MainPlayerDTO>>) getIntent().getSerializableExtra("data");
+        teamPOs = (List<TeamPO>) getIntent().getSerializableExtra("data");
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recylerView);
@@ -64,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new GameAdapter(teams);
+        mAdapter = new TeamAdapter(teamPOs);
         mRecyclerView.setAdapter(mAdapter);
 
         this.button.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +70,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final List<TeamPO> teamPOs = teamCompnet.makeTeams(teams, getApplication());
-
-
-
                 final TeamDAO dao = new TeamDAO(getApplicationContext());
-
-
                 List<TeamPO> allTeams = dao.getAll();
 
                 for (TeamPO teamPO : allTeams) {
@@ -87,7 +79,6 @@ public class GameActivity extends AppCompatActivity {
                 for (TeamPO teamPO : teamPOs) {
                     dao.insert(teamPO);
                 }
-
 
                 gameCompnet.makeGames(teamPOs, GameActivity.this);
 

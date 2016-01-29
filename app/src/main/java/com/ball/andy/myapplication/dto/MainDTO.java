@@ -1,18 +1,22 @@
 package com.ball.andy.myapplication.dto;
 
+import com.ball.andy.myapplication.domain.TeamPO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Andy on 2016/1/20.
  */
-public class MainDTO implements Serializable{
+public class MainDTO implements Serializable {
     private List<MainPlayerDTO> playerDTOs = new ArrayList<MainPlayerDTO>();
 
 
-    private Map<String, List<MainPlayerDTO>> teams;
+    private List<TeamPO> teamPOs=new ArrayList<>();
+
+
+
 
     public List<MainPlayerDTO> getPlayerDTOs() {
         return playerDTOs;
@@ -32,11 +36,13 @@ public class MainDTO implements Serializable{
         this.selectPlayDTO = selectPlayDTO;
     }
 
-    public Map<String, List<MainPlayerDTO>> getTeams() {
-        return teams;
+
+
+    public List<TeamPO> getTeamPOs() {
+        return teamPOs;
     }
 
-    public void setTeams(Map<String, List<MainPlayerDTO>> teams) {
-        this.teams = teams;
+    public void setTeamPOs(List<TeamPO> teamPOs) {
+        this.teamPOs = teamPOs;
     }
 }

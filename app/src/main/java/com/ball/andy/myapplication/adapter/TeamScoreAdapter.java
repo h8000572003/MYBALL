@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ball.andy.myapplication.R;
-import com.ball.andy.myapplication.domain.TeamPO;
+import com.ball.andy.myapplication.dto.TeamDTO;
 
 import java.util.List;
 
 /**
  * Created by Andy on 2016/1/28.
  */
-public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
+public class TeamScoreAdapter extends RecyclerView.Adapter<TeamScoreAdapter.ViewHolder> {
 
-    private List<TeamPO> teamPOs;
+    private List<TeamDTO> teamPOs;
 
-    public TeamAdapter(List<TeamPO> teamPOs) {
+    public TeamScoreAdapter(List<TeamDTO> teamPOs) {
         this.teamPOs = teamPOs;
     }
 
@@ -35,10 +35,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final TeamPO contact = teamPOs.get(position);
+        final TeamDTO contact = teamPOs.get(position);
 
 
-        holder.name.setText(contact.getTeamName());
+        holder.name.setText(contact.getTeamName() + "(" + contact.getScore() + ")");
         holder.name.setTag(contact);
         holder.email.setText(contact.getPlayer1() + "," + contact.getPlayer2());
 
